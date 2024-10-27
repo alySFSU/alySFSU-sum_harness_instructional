@@ -20,7 +20,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-fname = "sample_data_3vars.csv"
+fname = "sum_data_3vars.csv"
 df = pd.read_csv(fname, comment="#")
 print(df)
 
@@ -49,12 +49,12 @@ plt.xticks(xlocs, problem_sizes)
 # time and problem size? You may need to add some code here to compute
 # MFLOPS, then modify the plt.plot() lines below to plot MFLOPS rather than time.
 
-plt.plot(code1_time, "r-o")
-plt.plot(code2_time, "b-x")
-plt.plot(code3_time, "g-^")
+plt.plot(code1_time, "r-o", label='Direct Sum')
+plt.plot(code2_time, "b-x", label='Indirect Sum')
+plt.plot(code3_time, "g-^", label='Vector Sum')
 
-#plt.xscale("log")
-#plt.yscale("log")
+plt.xscale("log")
+plt.yscale("log")
 
 plt.xlabel("Problem Sizes")
 plt.ylabel("runtime")
