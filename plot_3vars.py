@@ -63,8 +63,8 @@ plt.yscale("log")
 plt.xlabel("Problem Sizes")
 plt.ylabel("MFLOPS")
 
-varNames = [var_names[1], var_names[2], var_names[3]]
-plt.legend(varNames, loc="best")
+
+plt.legend(loc="best")
 
 plt.grid(axis='both')
 
