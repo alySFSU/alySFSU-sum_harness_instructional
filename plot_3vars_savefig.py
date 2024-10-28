@@ -19,7 +19,7 @@ Assumptions: developed and tested using Python version 3.8.8 on macOS 11.6
 import pandas as pd
 import matplotlib.pyplot as plt
 
-plot_fname = "MFLOPSplot.png"
+plot_fname = "Bandwidthplot.png"
 
 fname = "sum_data_3vars.csv"
 df = pd.read_csv(fname, comment="#")
