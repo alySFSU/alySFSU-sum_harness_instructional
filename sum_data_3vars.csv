@@ -1,5 +1,5 @@
 #  data for use with the plot_3vars.py file from benchmark
-Problem Size,sum_direct,sum_indirect,sum_vector
+Problem Size,sum_direct,sum_vector,sum_indirect
 8388608,0.0012,0.0035,0.0120
 16777216,0.0024,0.0060,0.0668
 33554432,0.0048,0.0127,0.1663
