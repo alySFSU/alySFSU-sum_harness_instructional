@@ -19,7 +19,7 @@ Assumptions: developed and tested using Python version 3.8.8 on macOS 11.6
 import pandas as pd
 import matplotlib.pyplot as plt
 
-plot_fname = "Bandwidthplot.png"
+plot_fname = "MFLOPSplot.png"
 
 fname = "sum_data_3vars.csv"
 df = pd.read_csv(fname, comment="#")
@@ -47,7 +47,7 @@ mflops_code3 = [problem_sizes[i]/(code3_time[i] * 1e6) for i in range(len(proble
 
 plt.figure()
 
-plt.title("Bandwidth Comparison of 3 Codes")
+plt.title("MFLOPS Comparison of 3 Codes")
 
 xlocs = [i for i in range(len(problem_sizes))]
 
@@ -65,7 +65,7 @@ plt.plot(mflops_code3, "g-^", label='Indirect Sum')
 #plt.yscale("log")
 
 plt.xlabel("Problem Sizes")
-plt.ylabel("Bandwidth")
+plt.ylabel("MFLOPS")
 
 
 plt.legend( loc="best")
