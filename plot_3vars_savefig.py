@@ -61,8 +61,8 @@ plt.plot(bandwidth_code1, "r-o", label='Direct Sum')
 plt.plot(bandwidth_code2, "b-x", label= 'Vector Sum')
 plt.plot(bandwidth_code3, "g-^", label='Indirect Sum')
 
-plt.xscale("log")
-plt.yscale("log")
+#plt.xscale("log")
+#plt.yscale("log")
 
 plt.xlabel("Problem Sizes")
 plt.ylabel("Bandwidth")
