@@ -19,7 +19,7 @@ Assumptions: developed and tested using Python version 3.8.8 on macOS 11.6
 import pandas as pd
 import matplotlib.pyplot as plt
 
-plot_fname = "MFLOPSplot.png"
+plot_fname = "Latencyplot.png"
 
 fname = "sum_data_3vars.csv"
 df = pd.read_csv(fname, comment="#")
@@ -41,13 +41,17 @@ mflops_code1 = [problem_sizes[i]/(code1_time[i] * 1e6) for i in range(len(proble
 mflops_code2 = [problem_sizes[i]/(code2_time[i] * 1e6) for i in range(len(problem_sizes))]
 mflops_code3 = [problem_sizes[i]/(code3_time[i] * 1e6) for i in range(len(problem_sizes))]
 
-#bandwidth_code1 = [problem_sizes[i] * 8/(code1_time[i]) for i in range(len(problem_sizes))]
-#bandwidth_code2 = [problem_sizes[i] * 8/(code2_time[i]) for i in range(len(problem_sizes))]
-#bandwidth_code3 = [problem_sizes[i] * 8/(code3_time[i]) for i in range(len(problem_sizes))]
+bandwidth_code1 = [problem_sizes[i] * 8/(code1_time[i]) for i in range(len(problem_sizes))]
+bandwidth_code2 = [problem_sizes[i] * 8/(code2_time[i]) for i in range(len(problem_sizes))]
+bandwidth_code3 = [problem_sizes[i] * 8/(code3_time[i]) for i in range(len(problem_sizes))]
+
+latency_code1 = [code1_time[i]/(problem_sizes[i] * 8) for i in range(len(problem_sizes))]
+latency_code2 = [code2_time[i]/(problem_sizes[i] * 8) for i in range(len(problem_sizes))]
+latency_code3 = [code3_time[i]/(problem_sizes[i] * 8) for i in range(len(problem_sizes))]
 
 plt.figure()
 
-plt.title("MFLOPS Comparison of 3 Codes")
+plt.title("Latency Comparison of 3 Codes")
 
 xlocs = [i for i in range(len(problem_sizes))]
 
@@ -57,15 +61,19 @@ plt.xticks(xlocs, problem_sizes)
 #plt.plot(mflops_code2, "b-x", label= 'Vector Sum')
 #plt.plot(mflops_code3, "g-^", label='Indirect Sum')
 
-plt.plot(mflops_code1, "r-o", label='Direct Sum')
-plt.plot(mflops_code2, "b-x", label= 'Vector Sum')
-plt.plot(mflops_code3, "g-^", label='Indirect Sum')
+#plt.plot(bandwidth_code1, "r-o", label='Direct Sum')
+#plt.plot(bandwidth_code2, "b-x", label= 'Vector Sum')
+#plt.plot(bandwidth_code3, "g-^", label='Indirect Sum')
+
+plt.plot(latency_code1, "r-o", label='Direct Sum')
+plt.plot(latency_code2, "b-x", label= 'Vector Sum')
+plt.plot(latency_code3, "g-^", label='Indirect Sum')
 
 #plt.xscale("log")
 #plt.yscale("log")
 
 plt.xlabel("Problem Sizes")
-plt.ylabel("MFLOPS")
+plt.ylabel("Latency")
 
 
 plt.legend( loc="best")
