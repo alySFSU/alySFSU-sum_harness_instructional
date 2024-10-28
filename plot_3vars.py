@@ -36,7 +36,11 @@ code1_time = df[var_names[1]].values.tolist()
 code2_time = df[var_names[2]].values.tolist()
 code3_time = df[var_names[3]].values.tolist()
 
-plt.title("Comparison of 3 Codes")
+mflops_code1 = [problem_sizes[i]/(code1_time[i] * 1e6) for i in range(len(problem_sizes))]
+mflops_code2 = [problem_sizes[i]/(code2_time[i] * 1e6) for i in range(len(problem_sizes))]
+mflops_code3 = [problem_sizes[i]/(code3_time[i] * 1e6) for i in range(len(problem_sizes))]
+
+plt.title("Comparison of 3 Codes for Mflops")
 
 xlocs = [i for i in range(len(problem_sizes))]
 
@@ -49,15 +53,15 @@ plt.xticks(xlocs, problem_sizes)
 # time and problem size? You may need to add some code here to compute
 # MFLOPS, then modify the plt.plot() lines below to plot MFLOPS rather than time.
 
-plt.plot(code1_time, "r-o", label='Direct Sum')
-plt.plot(code2_time, "b-x", label='Indirect Sum')
-plt.plot(code3_time, "g-^", label='Vector Sum')
+plt.plot(mflops_code1, "r-o", label='Direct Sum')
+plt.plot(mflops_code2, "b-x", label='Indirect Sum')
+plt.plot(mflops_code3, "g-^", label='Vector Sum')
 
 plt.xscale("log")
 plt.yscale("log")
 
 plt.xlabel("Problem Sizes")
-plt.ylabel("runtime")
+plt.ylabel("MFLOPS")
 
 varNames = [var_names[1], var_names[2], var_names[3]]
 plt.legend(varNames, loc="best")
