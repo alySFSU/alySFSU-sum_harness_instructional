@@ -37,27 +37,35 @@ code1_time = df[var_names[1]].values.tolist()
 code2_time = df[var_names[2]].values.tolist()
 code3_time = df[var_names[3]].values.tolist()
 
-mflops_code1 = [problem_sizes[i]/(code1_time[i] * 1e6) for i in range(len(problem_sizes))]
-mflops_code2 = [problem_sizes[i]/(code2_time[i] * 1e6) for i in range(len(problem_sizes))]
-mflops_code3 = [problem_sizes[i]/(code3_time[i] * 1e6) for i in range(len(problem_sizes))]
+#mflops_code1 = [problem_sizes[i]/(code1_time[i] * 1e6) for i in range(len(problem_sizes))]
+#mflops_code2 = [problem_sizes[i]/(code2_time[i] * 1e6) for i in range(len(problem_sizes))]
+#mflops_code3 = [problem_sizes[i]/(code3_time[i] * 1e6) for i in range(len(problem_sizes))]
+
+bandwidth_code1 = [problem_sizes[i] * 8/(code1_time[i]) for i in range(len(problem_sizes))]
+bandwidth_code2 = [problem_sizes[i] * 8/(code2_time[i]) for i in range(len(problem_sizes))]
+bandwidth_code3 = [problem_sizes[i] * 8/(code3_time[i]) for i in range(len(problem_sizes))]
 
 plt.figure()
 
-plt.title("MFLOPS Comparison of 3 Codes")
+plt.title("Bandwidth Comparison of 3 Codes")
 
 xlocs = [i for i in range(len(problem_sizes))]
 
 plt.xticks(xlocs, problem_sizes)
 
-plt.plot(mflops_code1, "r-o", label='Direct Sum')
-plt.plot(mflops_code2, "b-x", label= 'Vector Sum')
-plt.plot(mflops_code3, "g-^", label='Indirect Sum')
+#plt.plot(mflops_code1, "r-o", label='Direct Sum')
+#plt.plot(mflops_code2, "b-x", label= 'Vector Sum')
+#plt.plot(mflops_code3, "g-^", label='Indirect Sum')
+
+plt.plot(bandwidth_code1, "r-o", label='Direct Sum')
+plt.plot(bandwidth_code2, "b-x", label= 'Vector Sum')
+plt.plot(bandwidth_code3, "g-^", label='Indirect Sum')
 
 plt.xscale("log")
 plt.yscale("log")
 
 plt.xlabel("Problem Sizes")
-plt.ylabel("MFLOPS")
+plt.ylabel("Bandwidth")
 
 
 plt.legend( loc="best")
