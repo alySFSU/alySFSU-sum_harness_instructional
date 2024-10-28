@@ -19,7 +19,7 @@ Assumptions: developed and tested using Python version 3.8.8 on macOS 11.6
 import pandas as pd
 import matplotlib.pyplot as plt
 
-plot_fname = "myplot.png"
+plot_fname = "MFLOPSplot.png"
 
 fname = "sum_data_3vars.csv"
 df = pd.read_csv(fname, comment="#")
@@ -37,26 +37,30 @@ code1_time = df[var_names[1]].values.tolist()
 code2_time = df[var_names[2]].values.tolist()
 code3_time = df[var_names[3]].values.tolist()
 
+mflops_code1 = [problem_sizes[i]/(code1_time[i] * 1e6) for i in range(len(problem_sizes))]
+mflops_code2 = [problem_sizes[i]/(code2_time[i] * 1e6) for i in range(len(problem_sizes))]
+mflops_code3 = [problem_sizes[i]/(code3_time[i] * 1e6) for i in range(len(problem_sizes))]
+
 plt.figure()
 
-plt.title("Comparison of 3 Codes")
+plt.title("MFLOPS Comparison of 3 Codes")
 
 xlocs = [i for i in range(len(problem_sizes))]
 
 plt.xticks(xlocs, problem_sizes)
 
-plt.plot(code1_time, "r-o")
-plt.plot(code2_time, "b-x")
-plt.plot(code3_time, "g-^")
+plt.plot(mflops_code1, "r-o", label='Direct Sum')
+plt.plot(mflops_code2, "b-x", label= 'Indirect Sum')
+plt.plot(mflops_code3, "g-^", label='Vector Sum')
 
-#plt.xscale("log")
-#plt.yscale("log")
+plt.xscale("log")
+plt.yscale("log")
 
 plt.xlabel("Problem Sizes")
-plt.ylabel("runtime")
+plt.ylabel("MFLOPS")
 
-varNames = [var_names[1], var_names[2], var_names[3]]
-plt.legend(varNames, loc="best")
+
+plt.legend( loc="best")
 
 plt.grid(axis='both')
 
