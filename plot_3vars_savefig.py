@@ -50,8 +50,8 @@ xlocs = [i for i in range(len(problem_sizes))]
 plt.xticks(xlocs, problem_sizes)
 
 plt.plot(mflops_code1, "r-o", label='Direct Sum')
-plt.plot(mflops_code2, "b-x", label= 'Indirect Sum')
-plt.plot(mflops_code3, "g-^", label='Vector Sum')
+plt.plot(mflops_code2, "b-x", label= 'Vector Sum')
+plt.plot(mflops_code3, "g-^", label='Indirect Sum')
 
 plt.xscale("log")
 plt.yscale("log")
